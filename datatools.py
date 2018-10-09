@@ -11,7 +11,7 @@ class DataGrapher:
 
         self.data_set = num
 
-    def plothist(self, column, bins = 30, color = 'g', size = (12,7)):
+    def plothist(self, column, bins = 50, color = 'g', size = (12,7)):
         fig = plt.figure(figsize= size)
         ax = plt.gca()
         ax.hist(self.data_set[column], color = color, bins = bins)
@@ -27,11 +27,14 @@ class DataGrapher:
         plt.ylabel(column2)
 
 
-    def plotheatc(self, var, annot = True,  size = (20,30)):
+    def plotheatc(self, column, annot = True,  size = (20,30)):
         fig = plt.figure(figsize= size)
         ax = plt.gca()
-        ax = sns.heatmap(self.data_set.corr()[[var]], annot=True)
-        ax.set_title("Correlations with Target Variable: " + var)
+        ax = sns.heatmap(self.data_set.corr()[[column]], annot=True)
+        ax.set_title("Correlations with Target Variable: " + column)
 
-    def boxplot(self, column, size = (9,7), color = 'red'):
-        sns.boxplot(self.data_set[column])
+    def plotbox(self, column, size = (9,7), color = 'red'):
+        fig = plt.figure(figsize = size)
+        ax = plt.gca()
+        sns.boxplot(self.data_set[column], color = color)
+        ax.set_title('Boxplot of ' + column )
