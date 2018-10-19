@@ -11,17 +11,17 @@ class DataGrapher:
 
         self.data_set = num
 
-    def plothist(self, column, bins = 50, color = 'g', size = (12,7)):
+    def plothist(self, column, bins = 50, color = 'g', size = (10,7)):
         fig = plt.figure(figsize= size)
         ax = plt.gca()
         ax.hist(self.data_set[column], color = color, bins = bins)
         ax.set_title("Histogram of: " + column)
         plt.xlabel(column)
 
-    def plotscat(self, column1, column2, color = 'b', size = (15,7)):
+    def plotscat(self, column1, column2, color = 'b', size = (12,9)):
         fig = plt.figure(figsize= size)
         ax = plt.gca()
-        ax.scatter(self.data_set[column1], self.data_set[column2], color = color)
+        ax= sns.regplot(self.data_set[column1], self.data_set[column2], color = color)
         ax.set_title("Scatterplot of: " + column1 + ' and '+ column2)
         plt.xlabel(column1)
         plt.ylabel(column2)
